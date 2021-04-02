@@ -1,13 +1,14 @@
-import { IsString, Length, IsOptional, IsUrl } from 'class-validator';
+import { IsString, Length, IsUrl } from 'class-validator';
 
 export class LinkRequestDto {
   @IsString()
-  @Length(0, 50)
-  @IsOptional()
+  @Length(5, 50, {
+    message: 'Slug should have minimum length of 5 and maximum of 50',
+  })
   slug?: string;
 
+  // @TODO: Fix URL validation
   @IsString()
-  @Length(0, 200)
-  @IsUrl({ require_tld: true })
+  @IsUrl({}, { always: true })
   url: string;
 }
