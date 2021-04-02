@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, Post, Redirect } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { LinkRequestDto } from './dto/request/link.dto';
 import { ShortnrService } from './shortnr.service';
 
@@ -7,15 +8,14 @@ export class ShortnrController {
   constructor(private shortnrService: ShortnrService) {}
   @Post('shortnr/create')
   async createShortenedLink(@Body() data: LinkRequestDto) {
-    console.log(data);
     return this.shortnrService.createLink(data);
   }
   @Get(':slug')
-  @Redirect()
-  async redirectToURL(@Param() params: { slug: string }) {
+  async redirectToURL(@Param() params: { slug: string }, @Res() res: Response) {
     if (params.slug === 'favicon.ico') {
       return { statusCode: 204 };
     }
-    return this.shortnrService.redirectToStoredURL(params.slug);
+    const data = await this.shortnrService.redirectToStoredURL(params.slug);
+    res.redirect(data.url);
   }
 }
