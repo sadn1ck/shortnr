@@ -33,13 +33,13 @@ export class ShortnrService {
       );
     }
   }
+
   async createLink(
-    data: LinkRequestDto,
+    linkRequestDto: LinkRequestDto,
   ): Promise<LinkResponseDto | CustomException | CustomServerException> {
-    // @TODO: Validate URL, if not, return invalid url with 401 and pretty message
     try {
       const slug =
-        data.slug === '' || data.slug === undefined ? nanoid(7) : data.slug;
+        linkRequestDto.slug === undefined ? nanoid(7) : linkRequestDto.slug;
       if (await this.doesSlugAlreadyExist(slug)) {
         return new CustomException(
           'Please provide another slug as this one is already in use!',
@@ -47,7 +47,7 @@ export class ShortnrService {
       }
 
       const creationData: Prisma.LinkCreateInput = {
-        url: data.url,
+        url: linkRequestDto.url,
         slug,
       };
       const createdLink = await this.prisma.link.create({
@@ -56,7 +56,7 @@ export class ShortnrService {
       return new LinkResponseDto(createdLink.slug, createdLink.url);
     } catch (error) {
       return new CustomServerException(
-        'Error while accessing database, please resent request',
+        'Error while accessing database, please resend request',
       );
     }
   }

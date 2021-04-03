@@ -2,6 +2,9 @@ import {
   BadRequestException,
   HttpStatus,
   InternalServerErrorException,
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
 } from '@nestjs/common';
 
 export class CustomException extends BadRequestException {
@@ -20,6 +23,18 @@ export class CustomServerException extends InternalServerErrorException {
       statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
       prettyMessage,
       success: false,
+    });
+  }
+}
+@Catch(BadRequestException)
+export class BadRequestExceptionFilter implements ExceptionFilter {
+  catch(exception: BadRequestException, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse();
+    response.send({
+      statusCode: HttpStatus.BAD_REQUEST,
+      success: false,
+      prettyMessage: 'Invalid URL or slug provided',
     });
   }
 }

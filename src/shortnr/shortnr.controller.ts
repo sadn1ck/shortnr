@@ -7,8 +7,8 @@ import { ShortnrService } from './shortnr.service';
 export class ShortnrController {
   constructor(private shortnrService: ShortnrService) {}
   @Post('shortnr/create')
-  async createShortenedLink(@Body() data: LinkRequestDto) {
-    return this.shortnrService.createLink(data);
+  async createShortenedLink(@Body() linkRequestDto: LinkRequestDto) {
+    return this.shortnrService.createLink(linkRequestDto);
   }
   @Get(':slug')
   async redirectToURL(@Param() params: { slug: string }, @Res() res: Response) {

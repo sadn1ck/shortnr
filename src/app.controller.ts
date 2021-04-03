@@ -9,4 +9,8 @@ export class AppController {
   getHello() {
     return { statusCode: 404, message: 'This URL does not exist!' };
   }
+  @Get()
+  root() {
+    return { message: 'Hello world!' };
+  }
 }
