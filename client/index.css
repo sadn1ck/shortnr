@@ -1,0 +1,32 @@
+html {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.title {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.name {
+  vertical-align: middle;
+  align-self: center;
+}
+.error {
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+}
+.success {
+  border-radius: 8px;
+  background-color: rgb(0, 112, 0);
+  color: white;
+  padding: 1rem;
+}
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

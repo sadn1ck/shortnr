@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+    <title>shortnr</title>
+  </head>
+  <body>
+    <header class="title">
+      <a href="http://github.com/sadn1ck/shortnr"><h1>shortnr</h1></a>
+      <h3 class="name">by Anik</h3>
+    </header>
+    <hr />
+    <main class="main">
+      <form id="form">
+        <div class="url-container">
+          <label id="urlLabel" for="url">
+            <h3>URL</h3>
+          </label>
+          <input
+            name="url"
+            id="url"
+            autocomplete="off"
+            placeholder="http://github.com/sadn1ck"
+          />
+        </div>
+        <div class="slug-container">
+          <label id="slugLabel" for="slug">
+            <h3>Slug</h3>
+          </label>
+          <input
+            name="slug"
+            id="slug"
+            autocomplete="off"
+            placeholder="mygithub"
+          />
+          <div class="caption-container">
+            <p class="caption">
+              <i>Must be greater than 2 characters (a-z, A-Z, 0-9, -, _)</i>
+            </p>
+          </div>
+        </div>
+        <button id="submitBtn" type="submit">Submit</button>
+      </form>
+    </main>
+    <footer>
+      <ul class="footer-links">
+        <li><a href="http://github.com/sadn1ck">GitHub</a></li>
+        <li><a href="http://github.com/sadn1ck/shortnr">Source</a></li>
+        <li><a href="http://linkedin.com/in/sadn1ck">LinkedIn</a></li>
+        <li><a href="mailto:anikdas0811@gmail.com">Email</a></li>
+      </ul>
+    </footer>
+  </body>
+  <script src="index.js"></script>
+</html>
