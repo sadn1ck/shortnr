@@ -53,7 +53,8 @@ export class ShortnrService {
       const createdLink = await this.prisma.link.create({
         data: creationData,
       });
-      return new LinkResponseDto(createdLink.slug, createdLink.url);
+      const fullUrl = `${config().baseURL}/s/${createdLink.slug}`;
+      return new LinkResponseDto(createdLink.slug, createdLink.url, fullUrl);
     } catch (error) {
       return new CustomServerException(
         'Error while accessing database, please resend request',

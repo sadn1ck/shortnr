@@ -8,7 +8,7 @@ export class LinkRequestDto {
   readonly url: string;
 
   @IsString()
-  @Length(5, 50, {
+  @Length(2, 50, {
     message: 'Slug should have minimum length of 5 and maximum of 50',
   })
   readonly slug?: string;

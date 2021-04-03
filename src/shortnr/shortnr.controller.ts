@@ -3,10 +3,10 @@ import { Response } from 'express';
 import { LinkRequestDto } from './dto/request/link.dto';
 import { ShortnrService } from './shortnr.service';
 
-@Controller('')
+@Controller('s')
 export class ShortnrController {
   constructor(private shortnrService: ShortnrService) {}
-  @Post('shortnr/create')
+  @Post('create')
   async createShortenedLink(@Body() linkRequestDto: LinkRequestDto) {
     return this.shortnrService.createLink(linkRequestDto);
   }
@@ -15,6 +15,7 @@ export class ShortnrController {
     if (params.slug === 'favicon.ico') {
       return { statusCode: 204 };
     }
+    console.log(params);
     const data = await this.shortnrService.redirectToStoredURL(params.slug);
     res.redirect(data.url);
   }
