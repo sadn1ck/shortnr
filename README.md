@@ -2,50 +2,33 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[shortnr](https://github.com/sadn1ck/shortnr) is a URL shortener written in Nest, Typescript, Postgres and Prisma, containerised with Docker
 
-## Installation
-
-```bash
-$ npm install
-```
 
 ## Running the app
 
 ```bash
+
+# setup environment variables, specifically DATABASE_URL
+$ cp sample.env .env
+$ vim .env
+
+# in docker
+$ docker-compose up
+
+# OR locally
+# have postgres installed
+
+# install dependencies
+$ yarn install
+
 # development
-$ npm run start
+$ yarn run start
+
 
 # watch mode
-$ npm run start:dev
+$ yarn run start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn run start:prod
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
