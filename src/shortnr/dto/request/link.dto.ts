@@ -1,7 +1,10 @@
 import { IsString, Length, IsUrl } from 'class-validator';
 
 export class LinkRequestDto {
-  @IsUrl({}, { message: 'URL provided is not valid', always: true })
+  @IsUrl(
+    { require_protocol: true },
+    { message: 'URL provided is not valid', always: true },
+  )
   @Length(2, 200, {
     message: 'URL should have minimum length of 1 and max of 200',
   })
