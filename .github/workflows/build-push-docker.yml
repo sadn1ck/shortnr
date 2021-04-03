@@ -1,0 +1,22 @@
+name: 'build'
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: 'Build'
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Build:checkout"
+        uses: actions/checkout@v2
+      - name: 'Build:dockerimage'
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: "sadn1ck"
+          password: ${{ secrets.PAT }}
+          repository: sadn1ck/shortnr
+          tags: latest
