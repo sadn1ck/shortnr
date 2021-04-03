@@ -1,4 +1,4 @@
-# shortnr - custom URL shortener
+# shortnr - URL shortener and customizer
 
 ## Description
 
