@@ -5,7 +5,7 @@ async function onCreateSubmit(e, form) {
   button.disabled = true;
   setTimeout(() => {
     button.disabled = false;
-  }, 2000);
+  }, 3500);
   const jsonFormData = {};
   for (const pairs of new FormData(form)) jsonFormData[pairs[0]] = pairs[1];
   const res = await fetch('/s/create', {
@@ -16,15 +16,7 @@ async function onCreateSubmit(e, form) {
     },
   });
   const content = await res.json();
-  if (content.prettyMessage) {
-    const errorText = document.createElement('p');
-    errorText.innerHTML = content.prettyMessage;
-    errorText.classList.add('error');
-    body.appendChild(errorText);
-    setTimeout(() => {
-      body.removeChild(errorText);
-    }, 2500);
-  } else {
+  if (content.slug && content.fullUrl && content.url) {
     const newLink = document.createElement('p');
     const shortLink = document.createElement('a');
     shortLink.setAttribute('href', content.fullUrl);
@@ -32,6 +24,19 @@ async function onCreateSubmit(e, form) {
     newLink.classList.add('success');
     newLink.append(shortLink);
     body.appendChild(newLink);
+  }
+  if (content.prettyMessage || content.success !== true) {
+    const errorText = document.createElement('p');
+    if (content.prettyMessage === undefined) {
+      errorText.innerHTML = content.response.prettyMessage;
+    } else {
+      errorText.innerHTML = content.prettyMessage;
+    }
+    errorText.classList.add('error');
+    body.appendChild(errorText);
+    setTimeout(() => {
+      body.removeChild(errorText);
+    }, 4000);
   }
 }
 document.getElementById('form').addEventListener('submit', function (e) {
