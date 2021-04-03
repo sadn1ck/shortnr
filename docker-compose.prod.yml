@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  shortnr:
+    container_name: shortnr_contnr
+    image: ghcr.io/sadn1ck/shortnr:latest
+    env_file:
+      - .env
+    expose:
+      - '3000'
+    ports:
+      - 3000:3000
+    links:
+      - postgres
+    networks:
+      - default
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  postgres:
+    container_name: postgres_container
+    env_file:
+      - .env
+    image: postgres:13
+    restart: unless-stopped
+    volumes:
+      - ../data_shortnr:/var/lib/postgresql/data
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    expose:
+      - '5432'
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_ROOT_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
