@@ -64,14 +64,17 @@ export class ShortnrService {
 
   // redirect to correct url
   async redirectToStoredURL(slugParam: string): Promise<RedirectDto> {
+    console.log(`Incoming slug to search: ${slugParam}`);
     const found = await this.prisma.link.findUnique({
       where: {
         slug: slugParam,
       },
     });
     if (!found) {
+      console.log(`Not found slug: ${slugParam}`);
       return new RedirectDto(`${config().baseURL}/404`, 404);
     }
+    console.log(`Should redirect to ${found.url}, ${found.slug}`);
     return new RedirectDto(found.url, 302);
   }
 }

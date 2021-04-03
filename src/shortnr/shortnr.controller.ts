@@ -12,10 +12,6 @@ export class ShortnrController {
   }
   @Get(':slug')
   async redirectToURL(@Param() params: { slug: string }, @Res() res: Response) {
-    if (params.slug === 'favicon.ico') {
-      return { statusCode: 204 };
-    }
-    console.log(params);
     const data = await this.shortnrService.redirectToStoredURL(params.slug);
     res.redirect(data.url);
   }
