@@ -11,6 +11,7 @@ html {
 .name {
   vertical-align: middle;
   align-self: center;
+  text-align: right;
 }
 .error {
   border-radius: 8px;
@@ -29,4 +30,5 @@ html {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-left: 0px;
 }
