@@ -30,7 +30,7 @@
     "@prisma/client": "2.20.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
-    "nanoid": "^3.1.22",
+    "nanoid": "^3.1.31",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"
